@@ -40,7 +40,7 @@ spec:
       name: Fetch Base
       action: fetch:template
       input:
-        url: ./template
+        url: ./springboot-template
         values:
           name: ${{ parameters.name }}
 
