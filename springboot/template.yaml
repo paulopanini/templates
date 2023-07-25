@@ -4,7 +4,7 @@ kind: Template
 metadata:
   name: simple-springboot
   title: Spring boot application
-  description: Creates a simple spring boot web application 2
+  description: Creates a simple spring boot web application
 spec:
   owner: benify:core
   type: service
@@ -48,6 +48,7 @@ spec:
       name: Publish
       action: publish:gitlab
       input:
+        repoVisibility: public
         allowedHosts: ['gitlab.com']
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
