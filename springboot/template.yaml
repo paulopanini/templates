@@ -4,7 +4,7 @@ kind: Template
 metadata:
   name: simple-springboot
   title: Spring boot application
-  description: Creates a simple spring boot application
+  description: Creates a simple spring boot application 1
 spec:
   owner: benify:core
   type: service
@@ -60,6 +60,16 @@ spec:
         values:
           name: ${{ parameters.name }}
           repoUrl: ${{ steps['publish'].output.repoContentsUrl }}
+    
+    - id: Moving files
+      name: Moving flux files
+      action: fs:rename
+      input:
+        files: 
+          - from: kustomization.yaml
+            to: flux-files/kustomization.yaml
+          - from: source.yaml
+            to: flux-files/source.yaml
 
     - id: debug
       name: Debugging
