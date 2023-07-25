@@ -4,7 +4,7 @@ kind: Template
 metadata:
   name: simple-springboot
   title: Spring boot application
-  description: Creates a simple spring boot application 9
+  description: Creates a simple spring boot application
 spec:
   owner: benify:core
   type: service
@@ -57,10 +57,16 @@ spec:
       action: fetch:template
       input:
         url: ./flux-files
-        targetPath: "flux-files"
         values:
           name: ${{ parameters.name }}
           repoUrl: ${{ steps['publish'].output.repoContentsUrl }}
+
+    - id: debug
+      name: Debugging
+      action: debug:log
+      input:
+        message: test
+        listWorkspace: true
 
     - id: flux-registry
       name: Register project in Flux
