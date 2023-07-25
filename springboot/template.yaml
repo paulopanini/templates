@@ -67,7 +67,7 @@ spec:
       action: publish:gitlab:merge-request
       input:
         branchName: ${{ parameters.name }}
-        title: Adding ${{parameters.name}} to the flux engine
+        title: Adding ${{parameters.name}} to the flux engine 
         description: This is was done using backstage
         repoUrl: gitlab.com?repo=flux&owner=paulopanini
         targetBranchName: master
