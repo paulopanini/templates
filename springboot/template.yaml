@@ -52,6 +52,15 @@ spec:
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
 
+    - id: fetch-flux
+      name: Fetch Flux Files
+      action: fetch:template
+      input:
+        url: ./flux-files
+        values:
+          name: ${{ parameters.name }}
+          repoUrl: ${{ steps['publish'].output.repoContentsUrl }}
+
     - id: flux-registry
       name: Register project in Flux
       action: publish:github:pull-request
@@ -61,7 +70,7 @@ spec:
         title: Adding ${{parameters.name}} to the flux engine
         description: This is was done using backstage
         repoUrl: https://gitlab.com/paulopanini/flux
-        targetBranchName: ${{parameters.name}}
+        targetBranchName: ${{ parameters.name }}
         sourcePath: ./flux-files
         targetpath: .
 
