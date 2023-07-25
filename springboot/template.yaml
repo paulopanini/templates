@@ -63,7 +63,7 @@ spec:
 
     - id: flux-registry
       name: Register project in Flux
-      action: publish:github:pull-request
+      action: publish:gitlab:merge-request
       input:
         allowedHosts: ['gitlab.com']
         branchName: master
