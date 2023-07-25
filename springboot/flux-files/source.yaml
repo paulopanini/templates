@@ -8,4 +8,4 @@ spec:
   interval: 1m0s
   ref:
     branch: master
-  url: ${{ values.repoContentsUrl }}
+  url: ${{ values.repoUrl }}
