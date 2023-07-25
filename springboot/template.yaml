@@ -44,13 +44,6 @@ spec:
         values:
           name: ${{ parameters.name }}
 
-    - id: publish
-      name: Publish
-      action: publish:gitlab
-      input:
-        allowedHosts: ['gitlab.com']
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
 
     - id: fetch-flux
       name: Fetch Flux Files
@@ -59,13 +52,12 @@ spec:
         url: ./flux-files
         values:
           name: ${{ parameters.name }}
-          repoUrl: ${{ steps['publish'].output.repoContentsUrl }}
+          repoUrl: "test"
 
     - id: flux-registry
       name: Register project in Flux
       action: publish:gitlab:merge-request
       input:
-        allowedHosts: ['gitlab.com']
         branchName: master
         title: Adding ${{parameters.name}} to the flux engine
         description: This is was done using backstage
@@ -73,6 +65,15 @@ spec:
         targetBranchName: ${{ parameters.name }}
         sourcePath: ./flux-files
         targetpath: .
+
+    
+    - id: publish
+      name: Publish
+      action: publish:gitlab
+      input:
+        allowedHosts: ['gitlab.com']
+        description: This is ${{ parameters.name }}
+        repoUrl: ${{ parameters.repoUrl }}
 
     - id: register
       name: Register
