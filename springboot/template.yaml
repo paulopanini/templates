@@ -4,7 +4,7 @@ kind: Template
 metadata:
   name: simple-springboot
   title: Spring boot application
-  description: Creates a simple spring boot application
+  description: Creates a simple spring boot application 3
 spec:
   owner: benify:core
   type: service
@@ -57,7 +57,6 @@ spec:
       action: fetch:template
       input:
         url: ./flux-files
-        targetPath: flux
         values:
           name: ${{ parameters.name }}
           repoUrl: ${{ steps['publish'].output.repoContentsUrl }}
@@ -67,12 +66,11 @@ spec:
       action: publish:gitlab:merge-request
       input:
         branchName: ${{ parameters.name }}
-        title: Adding ${{parameters.name}} to the flux engine 
+        title: Adding ${{parameters.name}} to the flux engine
         description: This is was done using backstage
         repoUrl: gitlab.com?repo=flux&owner=paulopanini
         targetBranchName: master
-        sourcePath: flux
-        targetpath: ./${{ parameters.name }}
+        targetpath: ${{ parameters.name }}
 
     - id: register
       name: Register
