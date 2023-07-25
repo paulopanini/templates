@@ -70,8 +70,7 @@ spec:
         description: This is was done using backstage
         repoUrl: gitlab.com?repo=flux&owner=paulopanini
         targetBranchName: master
-        sourcePath: ./flux-files
-        targetpath: .
+        targetpath: ${{ parameters.name }}
 
     - id: register
       name: Register
