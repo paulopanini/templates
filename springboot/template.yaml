@@ -52,6 +52,19 @@ spec:
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
 
+    - id: flux-registry
+      name: Register project in Flux
+      action: publish:github:pull-request
+      input:
+        allowedHosts: ['gitlab.com']
+        branchName: master
+        title: Adding ${{parameters.name}} to the flux engine
+        description: This is was done using backstage
+        repoUrl: https://gitlab.com/paulopanini/flux
+        targetBranchName: ${{parameters.name}}
+        sourcePath: ./flux-files
+        targetpath: .
+
     - id: register
       name: Register
       action: catalog:register
