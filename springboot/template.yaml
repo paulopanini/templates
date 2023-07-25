@@ -4,7 +4,7 @@ kind: Template
 metadata:
   name: simple-springboot
   title: Spring boot application
-  description: Creates a simple spring boot application 2
+  description: Creates a simple spring boot application 3
 spec:
   owner: benify:core
   type: service
