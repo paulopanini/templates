@@ -1,0 +1,25 @@
+image: jelastic/maven:3.8.6-openjdk-20.ea-b24
+
+stages:
+  - maven
+  - docker
+
+build:
+  stage: maven
+  script: "mvn install -B"
+  artifacts:
+    paths:
+      - target/*
+    expire_in: 1 day
+
+
+build-docker-image:
+  stage: docker
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  script:
+    - export VERSION=$(date +%s)
+    - docker build . --file Dockerfile --tag paulopanini/spring-test:$VERSION
+    - docker login -u paulopanini -p dckr_pat_WeZbTsfCKF2GFuMlhYQXXYjwN7g 
+    - docker push paulopanini/spring-test:$VERSION
