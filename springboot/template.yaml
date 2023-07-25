@@ -69,7 +69,7 @@ spec:
         branchName: master
         title: Adding ${{parameters.name}} to the flux engine
         description: This is was done using backstage
-        repoUrl: https://gitlab.com/paulopanini/flux
+        repoUrl: gitlab.com?repo=flux&owner=paulopanini
         targetBranchName: ${{ parameters.name }}
         sourcePath: ./flux-files
         targetpath: .
