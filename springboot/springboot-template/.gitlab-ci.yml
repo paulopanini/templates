@@ -20,6 +20,6 @@ build-docker-image:
     - docker:20.10.16-dind
   script:
     - export VERSION=$(date +%s)
-    - docker build . --file Dockerfile --tag paulopanini/spring-test:$VERSION
+    - docker build . --file Dockerfile --tag paulopanini/${{values.name}}:$VERSION
     - docker login -u paulopanini -p dckr_pat_WeZbTsfCKF2GFuMlhYQXXYjwN7g 
-    - docker push paulopanini/spring-test:$VERSION
+    - docker push paulopanini/${{values.name}}:$VERSION
