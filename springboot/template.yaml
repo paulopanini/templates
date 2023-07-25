@@ -4,7 +4,7 @@ kind: Template
 metadata:
   name: simple-springboot
   title: Spring boot application
-  description: Creates a simple spring boot application2 
+  description: Creates a simple spring boot application
 spec:
   owner: benify:core
   type: service
@@ -72,7 +72,7 @@ spec:
         repoUrl: gitlab.com?repo=flux&owner=paulopanini
         targetBranchName: master
         sourcePath: flux
-        targetpath: ${{ parameters.name }}
+        targetpath: ./${{ parameters.name }}
 
     - id: register
       name: Register
