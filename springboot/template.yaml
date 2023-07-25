@@ -57,6 +57,7 @@ spec:
       action: fetch:template
       input:
         url: ./flux-files
+        targetPath: flux
         values:
           name: ${{ parameters.name }}
           repoUrl: ${{ steps['publish'].output.repoContentsUrl }}
@@ -70,6 +71,7 @@ spec:
         description: This is was done using backstage
         repoUrl: gitlab.com?repo=flux&owner=paulopanini
         targetBranchName: master
+        sourcePath: flux
         targetpath: ${{ parameters.name }}
 
     - id: register
