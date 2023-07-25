@@ -4,7 +4,7 @@ kind: Template
 metadata:
   name: simple-springboot
   title: Spring boot application
-  description: Creates a simple spring boot application 7
+  description: Creates a simple spring boot application 8
 spec:
   owner: benify:core
   type: service
@@ -70,6 +70,7 @@ spec:
         description: This is was done using backstage
         repoUrl: gitlab.com?repo=flux&owner=paulopanini
         targetBranchName: master
+        sourcePath: ./flux-files
         targetpath: ${{ parameters.name }}
 
     - id: register
