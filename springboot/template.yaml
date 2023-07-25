@@ -58,11 +58,11 @@ spec:
       name: Register project in Flux
       action: publish:gitlab:merge-request
       input:
-        branchName: master
+        branchName: ${{ parameters.name }}
         title: Adding ${{parameters.name}} to the flux engine
         description: This is was done using backstage
         repoUrl: gitlab.com?repo=flux&owner=paulopanini
-        targetBranchName: ${{ parameters.name }}
+        targetBranchName: master
         sourcePath: ./flux-files
         targetpath: .
 
