@@ -4,7 +4,7 @@ kind: Template
 metadata:
   name: simple-springboot
   title: Spring boot application
-  description: Creates a simple spring boot web application gitlab
+  description: Creates a simple spring boot web application gitlab main
 spec:
   owner: benify:core
   type: service
@@ -80,7 +80,7 @@ spec:
         title: Adding ${{parameters.name}} to the flux engine
         description: This is was done using backstage
         repoUrl: gitlab.com?repo=fleet-infra&owner=paulopanini
-        targetBranchName: master
+        targetBranchName: main
         sourcePath: ./flux-files
         targetPath: clusters/my-cluster/
 
