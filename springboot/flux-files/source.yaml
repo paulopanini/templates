@@ -7,5 +7,5 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: master
+    semver: "1.x"
   url: ${{ values.repoUrl }}

@@ -9,12 +9,12 @@ metadata:
 spec:
   rules:
     - http:
-      paths:
-      - pathType: Prefix
-        path: /${{ values.name }}(/|$)(.*)
-        backend:
-          service:
-            name: ${{ values.name }}
-            port:
-              number: 8080
+        paths:
+        - pathType: Prefix
+          path: /${{ values.name }}(/|$)(.*)
+          backend:
+            service:
+              name: ${{ values.name }}
+              port:
+                number: 8080
 
