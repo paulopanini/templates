@@ -4,7 +4,7 @@ kind: Template
 metadata:
   name: simple-springboot
   title: Spring boot application
-  description: Creates a simple spring boot web application gitlab main
+  description: Creates a simple spring boot web application ingress
 spec:
   owner: benify:core
   type: service
@@ -71,6 +71,8 @@ spec:
             to: flux-files/${{ parameters.name }}-kustomization.yaml
           - from: source.yaml
             to: flux-files/${{ parameters.name }}-source.yaml
+          - from: ingress.yaml
+            to: flux-files/${{ parameters.name }}-ingress.yaml
             
     - id: flux-registry
       name: Register project in Flux
