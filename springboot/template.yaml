@@ -49,6 +49,7 @@ spec:
       action: publish:gitlab
       input:
         repoVisibility: public
+        gitCommitMessage: "#backstage"
         allowedHosts: ['gitlab.com']
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
