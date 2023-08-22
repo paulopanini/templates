@@ -8,13 +8,13 @@ metadata:
   
 spec:
   rules:
-    - host: ${{ values.name }}.local
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: ${{ values.name }}
-                port:
-                  number: 80
+    - http:
+      paths:
+      - pathType: Prefix
+        path: /${{ values.name }}(/|$)(.*)
+        backend:
+          service:
+            name: ${{ values.name }}
+            port:
+              number: 8080
+
