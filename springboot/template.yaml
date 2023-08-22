@@ -4,7 +4,7 @@ kind: Template
 metadata:
   name: simple-springboot
   title: Spring boot application
-  description: Creates a simple spring boot web application ingress
+  description: Creates a simple spring boot web application test
 spec:
   owner: benify:core
   type: service
@@ -35,23 +35,23 @@ spec:
               - gitlab.com
 
   # here's the steps that are executed in series in the scaffolder backend
-  steps:
-    - id: fetch-base
-      name: Fetch Base
-      action: fetch:template
-      input:
-        url: ./springboot-template
-        values:
-          name: ${{ parameters.name }}
+  #steps:
+  #  - id: fetch-base
+  #    name: Fetch Base
+  #    action: fetch:template
+  #    input:
+  #      url: ./springboot-template
+  #      values:
+  #        name: ${{ parameters.name }}
 
-    - id: publish
-      name: Publish
-      action: publish:gitlab
-      input:
-        repoVisibility: public
-        allowedHosts: ['gitlab.com']
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+  #  - id: publish
+  #    name: Publish
+  #    action: publish:gitlab
+  #    input:
+  #      repoVisibility: public
+  #      allowedHosts: ['gitlab.com']
+  #      description: This is ${{ parameters.name }}
+  #      repoUrl: ${{ parameters.repoUrl }}
 
     - id: fetch-flux
       name: Fetch Flux Files
@@ -73,25 +73,32 @@ spec:
             to: flux-files/${{ parameters.name }}-source.yaml
           - from: ingress.yaml
             to: flux-files/${{ parameters.name }}-ingress.yaml
-            
-    - id: flux-registry
-      name: Register project in Flux
-      action: publish:gitlab:merge-request
-      input:
-        branchName: ${{ parameters.name }}
-        title: Adding ${{parameters.name}} to the flux engine
-        description: This is was done using backstage
-        repoUrl: gitlab.com?repo=fleet-infra&owner=paulopanini
-        targetBranchName: main
-        sourcePath: ./flux-files
-        targetPath: clusters/my-cluster/
 
-    - id: register
-      name: Register
-      action: catalog:register
+    - id: debug
+      name: Debugging
+      action: debug:log
       input:
-        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
-        catalogInfoPath: '/catalog-info.yaml'
+        message: test
+        listWorkspace: true
+    
+   # - id: flux-registry
+   #   name: Register project in Flux
+   #   action: publish:gitlab:merge-request
+   #   input:
+   #     branchName: ${{ parameters.name }}
+   #     title: Adding ${{parameters.name}} to the flux engine
+   #     description: This is was done using backstage
+   #     repoUrl: gitlab.com?repo=fleet-infra&owner=paulopanini
+   #     targetBranchName: main
+   #     sourcePath: ./flux-files
+   #     targetPath: clusters/my-cluster/
+
+    #- id: register
+    #  name: Register
+    #  action: catalog:register
+    #  input:
+    #    repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+    #    catalogInfoPath: '/catalog-info.yaml'
   output:
     links:
       - title: Repository
