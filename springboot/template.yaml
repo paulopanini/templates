@@ -71,14 +71,7 @@ spec:
             to: flux-files/${{ parameters.name }}-kustomization.yaml
           - from: source.yaml
             to: flux-files/${{ parameters.name }}-source.yaml
-
-    - id: debug
-      name: Debugging
-      action: debug:log
-      input:
-        message: test
-        listWorkspace: true
-
+            
     - id: flux-registry
       name: Register project in Flux
       action: publish:gitlab:merge-request
