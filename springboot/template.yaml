@@ -71,8 +71,6 @@ spec:
             to: flux-files/${{ parameters.name }}-kustomization.yaml
           - from: source.yaml
             to: flux-files/${{ parameters.name }}-source.yaml
-          - from: ingress.yaml
-            to: flux-files/${{ parameters.name }}-ingress.yaml
 
     - id: debug
       name: Debugging
