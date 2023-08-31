@@ -24,9 +24,9 @@ build-docker-image:
     - docker:20.10.16-dind
   script:
     - export VERSION=$(date +%s)
-    - docker build . --file Dockerfile --tag paulopanini/${{values.name}}:latest
+    - docker build . --file Dockerfile --tag paulopanini/${{values.name}}:$CI_COMMIT_SHORT_SHA
     - docker login -u paulopanini -p dckr_pat_WeZbTsfCKF2GFuMlhYQXXYjwN7g 
-    - docker push paulopanini/${{values.name}}:latest
+    - docker push paulopanini/${{values.name}}:$CI_COMMIT_SHORT_SHA
 
 
 deploy-uat:
