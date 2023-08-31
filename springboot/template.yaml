@@ -4,7 +4,7 @@ kind: Template
 metadata:
   name: simple-springboot
   title: Spring boot application
-  description: Creates a simple spring boot web application ingress 2
+  description: Creates a simple spring boot web application
 spec:
   owner: benify:core
   type: service
@@ -70,8 +70,6 @@ spec:
         files: 
           - from: kustomization.yaml
             to: flux-files/${{ parameters.name }}-kustomization.yaml
-          - from: source.yaml
-            to: flux-files/${{ parameters.name }}-source.yaml
 
     - id: debug
       name: Debugging
