@@ -44,10 +44,17 @@ first-deploy:
   stage: deploy
   rules: 
     - if: $CI_COMMIT_MESSAGE =~ /.*#backstage.*/ && $CI_COMMIT_BRANCH
+  before_script:
+    - git clone https://oauth2:glpat-Ty4AVdC2TyuBku7GAvpC@gitlab.com/paulopanini/microservice-configurations.git
+    - git remote set-url origin https://oauth2:glpat-Ty4AVdC2TyuBku7GAvpC@gitlab.com/paulopanini/microservice-configurations.git
+    - git config --global user.email "backstage@benify.com"
+    - git config --global user.name "backstage"
   script:
-    - git clone https://gitlab.com/paulopanini/microservice-configurations.git
-    - git config credential.helper envvar
-    - git config user.name  $GITCREDENTIALUSERNAME
-    - git config user.email $GITCREDENTIALEMAIL
+    - ls
+    - cd microservice-configurations
+    - git config user.name "backstage"
     - mkdir ${{values.name}}
+    - cp -a ../deployment/. ${{values.name}}/
+    - git add .
+    - git commit -m "Adding ${{values.name}} to IAC"
     - git push
