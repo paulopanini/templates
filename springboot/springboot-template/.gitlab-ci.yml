@@ -28,17 +28,25 @@ build-docker-image:
     - docker login -u paulopanini -p dckr_pat_WeZbTsfCKF2GFuMlhYQXXYjwN7g 
     - docker push paulopanini/${{values.name}}:latest
 
+
 deploy-uat:
   stage: deploy
   rules: 
     - if: $CI_COMMIT_MESSAGE =~ /.*#deployuat.*/ && $CI_COMMIT_BRANCH
   when: manual
   before_script:
-    - git remote set-url origin https://oauth2:glpat-Ty4AVdC2TyuBku7GAvpC@gitlab.com/paulopanini/${{values.name}}.git
+    - git clone https://oauth2:glpat-Ty4AVdC2TyuBku7GAvpC@gitlab.com/paulopanini/microservice-configurations.git
+    - git remote set-url origin https://oauth2:glpat-Ty4AVdC2TyuBku7GAvpC@gitlab.com/paulopanini/microservice-configurations.git
+    - git config --global user.email "backstage@benify.com"
+    - git config --global user.name "backstage"
   script:
-    - tag=1.0-${CI_COMMIT_SHORT_SHA}
-    - git tag $tag
-    - git push origin $tag
+    - cd microservice-configurations/${{values.name}}
+    - sed -i -E "s/(${{values.name}}:)[a-z|0-9]*/${{values.name}}:$CI_COMMIT_SHORT_SHA/g" deployment.yaml
+    - git add .
+    - git commit -m "Deploy $CI_COMMIT_TIMESTAMP"
+    - git push
+
+
 
 first-deploy:
   stage: deploy
