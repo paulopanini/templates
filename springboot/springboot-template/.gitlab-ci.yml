@@ -44,9 +44,10 @@ first-deploy:
   stage: deploy
   rules: 
     - if: $CI_COMMIT_MESSAGE =~ /.*#backstage.*/ && $CI_COMMIT_BRANCH
-  before_script:
-    - git remote set-url origin https://oauth2:glpat-Ty4AVdC2TyuBku7GAvpC@gitlab.com/paulopanini/${{values.name}}.git
   script:
-    - tag=1.0-${CI_COMMIT_SHORT_SHA}
-    - git tag $tag
-    - git push origin $tag
+    - git clone https://gitlab.com/paulopanini/microservice-configurations.git
+    - git config credential.helper envvar
+    - git config user.name  $GITCREDENTIALUSERNAME
+    - git config user.email $GITCREDENTIALEMAIL
+    - mkdir ${{values.name}}
+    - git push
