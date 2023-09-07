@@ -32,7 +32,7 @@ spec:
           ui:field: RepoUrlPicker
           ui:options:
             allowedHosts:
-              - gitlab.com
+              - github.com
 
   # here's the steps that are executed in series in the scaffolder backend
   steps:
@@ -46,11 +46,11 @@ spec:
 
     - id: publish
       name: Publish
-      action: publish:gitlab
+      action: publish:github
       input:
         repoVisibility: public
         gitCommitMessage: "#backstage"
-        allowedHosts: ['gitlab.com']
+        allowedHosts: ['github.com']
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
 
