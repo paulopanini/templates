@@ -87,6 +87,7 @@ jobs:
       with:
         source_file: flux-files/${{values.name}}-kustomization.yaml
         destination_repo: paulopaniniorg/flux-cd
+        destination_folder: clusters/my-cluster
         user_email: backstage@backstage.com
         user_name: backstage
         commit_message: Adding ${{values.name}} to IAC
