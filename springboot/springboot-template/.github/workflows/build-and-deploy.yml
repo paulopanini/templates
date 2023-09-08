@@ -79,6 +79,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
     - name: Handle first deploy
       uses: cpina/github-action-push-to-another-repository@v1.7.2
       env:
