@@ -54,42 +54,6 @@ spec:
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
 
-    - id: fetch-flux
-      name: Fetch Flux Files
-      action: fetch:template
-      input:
-        url: ./flux-files
-        values:
-          name: ${{ parameters.name }}
-          repoUrl: ${{ steps['publish'].output.remoteUrl }}
-    
-    - id: Moving files
-      name: Moving flux files
-      action: fs:rename
-      input:
-        files: 
-          - from: kustomization.yaml
-            to: flux-files/${{ parameters.name }}-kustomization.yaml
-
-    - id: debug
-      name: Debugging
-      action: debug:log
-      input:
-        message: test
-        listWorkspace: true
-    
-    - id: flux-registry
-      name: Register project in Flux
-      action: publish:gitlab:merge-request
-      input:
-        branchName: ${{ parameters.name }}
-        title: Adding ${{parameters.name}} to the flux engine
-        description: This is was done using backstage
-        repoUrl: gitlab.com?repo=fleet-infra&owner=paulopanini
-        targetBranchName: main
-        sourcePath: ./flux-files
-        targetPath: clusters/my-cluster/
-
     - id: register
       name: Register
       action: catalog:register

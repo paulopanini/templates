@@ -69,7 +69,6 @@ jobs:
         git config --global user.email "backstage@benify.com"
         git config --global user.name "backstage"
         sed -i -E "s/(${{values.name}}:)[a-z|0-9]*/${{values.name}}:${{ '${{needs.build.outputs.my_date}}' }}/g" deployment.yaml
-        echo "test"
         git add .
         git commit -m "Deploy ${{ '${{needs.build.outputs.my_date}}' }}"
         git push
@@ -79,14 +78,25 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - name: Handle first deploy
+    - name: Copy files to flux-cd
+      uses: cpina/github-action-push-to-another-repository@v1.7.2
+      env:
+        API_TOKEN_GITHUB: ${{ '${{secrets.API_GITHUB_TOKEN}}' }}
+      with:
+        source-before-directory: flux-files
+        source-directory: flux-files
+        destination-github-username: paulopaniniorg
+        destination-repository-name: flux-cd
+        user-email: paulopanini@gmail.com
+        commit-message: Adding ${{values.name}} to IAC
+    - name: Copy files to microservice-configurations
       uses: cpina/github-action-push-to-another-repository@v1.7.2
       env:
         API_TOKEN_GITHUB: ${{ '${{secrets.API_GITHUB_TOKEN}}' }}
       with:
         source-before-directory: deployment
         source-directory: deployment
-        destination-github-username: paulopanini
+        destination-github-username: paulopaniniorg
         destination-repository-name: microservice-configurations
         user-email: paulopanini@gmail.com
         commit-message: Adding ${{values.name}} to IAC
