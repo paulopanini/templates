@@ -87,7 +87,8 @@ jobs:
       with:
         source_file: flux-files/${{values.name}}-kustomization.yaml
         destination_repo: paulopaniniorg/flux-cd
-        user_email: paulopanini@gmail.com
+        user_email: backstage@backstage.com
+        user_name: backstage
         commit_message: Adding ${{values.name}} to IAC
     - name: Copy files to microservice-configurations
       uses: cpina/github-action-push-to-another-repository@v1.7.2
