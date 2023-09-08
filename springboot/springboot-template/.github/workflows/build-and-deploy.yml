@@ -87,7 +87,7 @@ jobs:
       with:
         source-before-directory: deployment
         source-directory: deployment
-        destination-github-username: paulopanini
+        destination-github-username: paulopaniniorg
         destination-repository-name: microservice-configurations
         user-email: paulopanini@gmail.com
         commit-message: Adding ${{values.name}} to IAC
