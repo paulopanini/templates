@@ -85,7 +85,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ '${{secrets.API_GITHUB_TOKEN}}' }}
       with:
-        source_file: flux-files/kustomization.yaml
+        source_file: flux-files/${{values.name}}-kustomization.yaml
         destination-repo: paulopaniniorg/flux-cd
         user_email: paulopanini@gmail.com
         commit_message: Adding ${{values.name}} to IAC
