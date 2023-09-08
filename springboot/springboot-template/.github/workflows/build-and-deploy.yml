@@ -79,17 +79,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - run: mv flux-files/kustomization.yaml flux-files/${{values.name}}-kustomization.yaml && cd flux-files && ls
     - name: Copy files to flux-cd
-      uses: cpina/github-action-push-to-another-repository@v1.7.2
+      uses: dmnemec/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ '${{secrets.API_GITHUB_TOKEN}}' }}
       with:
-        source-before-directory: flux-files
-        source-directory: flux-files
-        destination-github-username: paulopaniniorg
-        destination-repository-name: flux-cd
-        user-email: paulopanini@gmail.com
-        commit-message: Adding ${{values.name}} to IAC
+        source_file: flux-files/kustomization.yaml
+        destination-repo: paulopaniniorg/flux-cd
+        user_email: paulopanini@gmail.com
+        commit_message: Adding ${{values.name}} to IAC
     - name: Copy files to microservice-configurations
       uses: cpina/github-action-push-to-another-repository@v1.7.2
       env:
