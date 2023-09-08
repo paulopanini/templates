@@ -91,7 +91,7 @@ jobs:
         user_email: backstage@backstage.com
         user_name: backstage
         commit_message: Adding ${{values.name}} to IAC
-    - run: sed -i -E "s/(${{values.name}}:)[a-z|0-9]*/${{values.name}}:${{needs.build.outputs.my_date}}/g" deployment/deployment.yaml
+    - run: sed -i -E "s/(${{values.name}}:)[a-z|0-9]*/${{values.name}}:${{ '${{needs.build.outputs.my_date}}' }}/g" deployment/deployment.yaml
     - name: Copy files to microservice-configurations
       uses: cpina/github-action-push-to-another-repository@v1.7.2
       env:
