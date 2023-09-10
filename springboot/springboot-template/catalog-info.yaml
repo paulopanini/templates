@@ -3,6 +3,8 @@ kind: API
 metadata:
   name: ${{values.name}}
   description: Say hello
+  annotations:
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: openapi
   lifecycle: production
@@ -37,5 +39,3 @@ spec:
                     properties:
                       message:
                         type: string
-annotations:
-  backstage.io/techdocs-ref: dir:.
