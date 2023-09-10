@@ -63,9 +63,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: |
-        git clone https://token:${{ '${{secrets.API_GITHUB_TOKEN}}' }}@github.com/paulopanini/microservice-configurations.git
+        git clone https://token:${{ '${{secrets.API_GITHUB_TOKEN}}' }}@github.com/paulopaniniorg/microservice-configurations.git
         cd microservice-configurations/${{values.name}}
-        git remote set-url origin https://token:${{ '${{secrets.API_GITHUB_TOKEN}}' }}@github.com/paulopanini/microservice-configurations.git
+        git remote set-url origin https://token:${{ '${{secrets.API_GITHUB_TOKEN}}' }}@github.com/paulopaniniorg/microservice-configurations.git
         git config --global user.email "backstage@benify.com"
         git config --global user.name "backstage"
         sed -i -E "s/(${{values.name}}:)[a-z|0-9]*/${{values.name}}:${{ '${{needs.build.outputs.my_date}}' }}/g" deployment.yaml
