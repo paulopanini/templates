@@ -37,4 +37,5 @@ spec:
                     properties:
                       message:
                         type: string
-          
+annotations:
+  backstage.io/techdocs-ref: dir:.
