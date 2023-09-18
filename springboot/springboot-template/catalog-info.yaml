@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: ${{values.name}}
-  description: Say hello
+  description: ${{values.description}}
   annotations:
     backstage.io/techdocs-ref: dir:.
 spec:
