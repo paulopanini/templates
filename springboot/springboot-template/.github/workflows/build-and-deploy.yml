@@ -94,6 +94,10 @@ jobs:
     - run: sed -i -E "s/(${{values.name}}:)[a-z|0-9]*/${{values.name}}:${{ '${{needs.build.outputs.my_date}}' }}/g" deployment/deployment.yaml
     - name: Copy files to microservice-configurations
       uses: cpina/github-action-push-to-another-repository@v1.7.2
+    - run: | 
+        rm -rf flux-files
+        rm -rf deployment
+        ls
       env:
         API_TOKEN_GITHUB: ${{ '${{secrets.API_GITHUB_TOKEN}}' }}
       with:
