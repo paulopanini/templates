@@ -22,10 +22,14 @@ spec:
           ui:autofocus: true
           ui:options:
             rows: 5
-        description:
-          title: Description
+        owner:
+          title: Owner
           type: string
-          description: Help others understand what this website is for.
+          description: Owner of the component
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
     - title: Choose a location
       required:
         - repoUrl
