@@ -56,14 +56,12 @@ spec:
       name: Publish
       action: publish:github
       input:
-        repoVisibility: public
+        repoVisibility: private
         gitCommitMessage: "#backstage"
         allowedHosts: ['github.com']
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
-        collaborators: 
-          - access: "admin"
-            team: ${{ parameters.owner }}
+        access: ${{ parameters.owner }}
 
     - id: register
       name: Register
