@@ -62,8 +62,7 @@ spec:
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
         collaborators: 
-          - access: "admin"
-            team: ${{ parameters.owner }}
+          - team: ${{ parameters.owner }}
 
     - id: register
       name: Register
