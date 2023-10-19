@@ -61,10 +61,9 @@ spec:
         allowedHosts: ['github.com']
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
-        collaborators: [
-            access: Admin
+        collaborators: 
+          - access: Admin
             team: ${{ parameters.owner }}
-          ]
 
     - id: register
       name: Register
