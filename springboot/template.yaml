@@ -22,14 +22,6 @@ spec:
           ui:autofocus: true
           ui:options:
             rows: 5
-        owner:
-          title: Owner
-          type: string
-          description: Owner of the component
-          ui:field: OwnerPicker
-          ui:options:
-            catalogFilter:
-              kind: Group
     - title: Choose a location
       required:
         - repoUrl
@@ -56,12 +48,11 @@ spec:
       name: Publish
       action: publish:github
       input:
-        repoVisibility: internal
+        repoVisibility: private
         gitCommitMessage: "#backstage"
         allowedHosts: ['github.com']
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
-        access: ${{ parameters.owner }}
 
     - id: register
       name: Register
