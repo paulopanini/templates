@@ -56,7 +56,7 @@ spec:
       name: Publish
       action: publish:github
       input:
-        repoVisibility: private
+        repoVisibility: internal
         gitCommitMessage: "#backstage"
         allowedHosts: ['github.com']
         description: This is ${{ parameters.name }}
